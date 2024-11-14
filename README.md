@@ -50,7 +50,3 @@ return 0;
 
 Licence
 Ce projet est distribué sous la licence MIT. Consultez le fichier LICENSE pour plus de détails.
-
-Remerciements
-SFEMovie pour l'inspiration et la base technique.
-CSFML pour sa puissante bibliothèque multimédia en C.
