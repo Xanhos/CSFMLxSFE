@@ -15,31 +15,35 @@ Contrôle de lecture (pause, reprise, arrêt).
 Intégration transparente avec CSFML.
 
 ```
+#include "SFML/Graphics.h"
 
-#include <CSFML/Graphics.h>
-#include "SFEMovie.h" // Nom du fichier d'en-tête de l'adaptation
+int main()
+{
+	sfRenderWindow* window = sfRenderWindow_create(sfVideoMode_getDesktopMode(), "SFML", sfDefaultStyle, NULL);
 
-int main() {
-    // Initialisation de la fenêtre CSFML
-    sfRenderWindow* window = sfRenderWindow_create(...);
+	sfeMovie* movie = sfeMovie_createFromFile("YOUR//FILE");
+	sfeMovie_play(movie);
+	sfeMovie_fit(movie, (sfFloatRect) {0,0, 1920 , 1080}, sfTrue);
+	sfeMovie_setVolume(movie, 50.f);
+	sfEvent event;
+	while (sfRenderWindow_isOpen(window))
+	{
+		while (sfRenderWindow_pollEvent(window, &event))
+		{
+			if (event.type == sfEvtClosed)
+			{
+				sfRenderWindow_close(window);
+			}
+		}
+		sfeMovie_update(movie);
 
-    // Chargement d'une vidéo
-    Movie* movie = Movie_create("path/to/video.mp4");
+		sfRenderWindow_clear(window, sfBlack);
+		sfRenderWindow_drawMovie(window, movie, NULL);
+		sfRenderWindow_display(window);
 
-    // Boucle de rendu
-    while (sfRenderWindow_isOpen(window)) {
-        // Lecture et affichage de la vidéo
-        Movie_play(movie);
-        
-        // Rendu de la vidéo sur la fenêtre
-        sfRenderWindow_display(window);
-    }
+	}
 
-    // Libération des ressources
-    Movie_destroy(movie);
-    sfRenderWindow_destroy(window);
-
-    return 0;
+return 0;
 }
 
 ```
