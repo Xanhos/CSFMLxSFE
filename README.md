@@ -14,6 +14,8 @@ Synchronisation audio/vidéo.
 Contrôle de lecture (pause, reprise, arrêt).
 Intégration transparente avec CSFML.
 
+```
+
 #include <CSFML/Graphics.h>
 #include "SFEMovie.h" // Nom du fichier d'en-tête de l'adaptation
 
@@ -39,6 +41,9 @@ int main() {
 
     return 0;
 }
+
+```
+
 Licence
 Ce projet est distribué sous la licence MIT. Consultez le fichier LICENSE pour plus de détails.
 
